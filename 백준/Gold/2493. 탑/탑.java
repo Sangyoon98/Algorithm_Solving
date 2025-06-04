@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
@@ -8,30 +6,28 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        Stack<Top> stack = new Stack<>();
-
         int N = Integer.parseInt(br.readLine());
-        StringTokenizer st =  new StringTokenizer(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        Stack<int[]> stack = new Stack<>();
 
         for (int i = 1; i <= N; i++) {
             int height = Integer.parseInt(st.nextToken());
-
             if (stack.isEmpty()) {
                 sb.append("0 ");
-                stack.push(new Top(i, height));
+                stack.push(new int[] {i, height});
             } else {
                 while (true) {
                     if (stack.isEmpty()) {
                         sb.append("0 ");
-                        stack.push(new Top(i, height));
+                        stack.push(new int[] {i, height});
                         break;
                     }
 
-                    Top top = stack.peek();
+                    int[] top = stack.peek();
 
-                    if (top.height > height) {
-                        sb.append(top.num).append(" ");
-                        stack.push(new Top(i, height));
+                    if (top[1] > height) {
+                        sb.append(top[0]).append(" ");
+                        stack.push(new int[] {i, height});
                         break;
                     } else stack.pop();
                 }
@@ -39,15 +35,5 @@ public class Main {
         }
 
         System.out.print(sb);
-    }
-}
-
-class Top {
-    int num;
-    int height;
-
-    Top(int num, int height) {
-        this.num = num;
-        this.height = height;
     }
 }

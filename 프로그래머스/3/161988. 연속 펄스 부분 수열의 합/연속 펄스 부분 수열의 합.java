@@ -1,7 +1,7 @@
 import java.util.*;
 
 class Solution {
-    long resultMax = 0;
+    long resultMax = Long.MIN_VALUE;
     
     public long solution(int[] sequence) {
         long[] arr1 = new long[sequence.length]; // 짝수
@@ -16,8 +16,10 @@ class Solution {
                 arr2[i] = -sequence[i];
             }
         }
+        
         getResult(arr1);
         getResult(arr2);
+        
         return resultMax;
     }
     

@@ -25,8 +25,7 @@ public class Main {
         }
 
         long answer = 0;
-        int index = 0;
-        while (!queue.isEmpty() && index < V - 1) {
+        while (!queue.isEmpty()) {
             int[] curr = queue.poll();
             if (find(curr[0]) != find(curr[1])) {
                 union(curr[0], curr[1]);

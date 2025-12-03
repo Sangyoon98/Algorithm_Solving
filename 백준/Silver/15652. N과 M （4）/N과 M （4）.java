@@ -1,7 +1,5 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
     static int N, M;
@@ -19,14 +17,14 @@ public class Main {
         System.out.print(sb);
     }
 
-    public static void dfs(int at, int depth) {
+    static void dfs(int start, int depth) {
         if (depth == M) {
-            for (int val : arr) sb.append(val).append(" ");
+            for (int i : arr) sb.append(i).append(" ");
             sb.append("\n");
             return;
         }
 
-        for (int i = at; i <= N; i++) {
+        for (int i = start; i <= N; i++) {
             arr[depth] = i;
             dfs(i, depth + 1);
         }
